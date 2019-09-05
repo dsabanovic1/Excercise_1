@@ -26,11 +26,11 @@ public class EmailService {
         };
         Session session = Session.getInstance(props, auth);
 
-        sendTLSEmail(session, email.getAlternateEmail(), "We succesfully created businnes email for you: ", email.displayInfo() + email.getPassword());
+        sendTLSEmail(session, email.getAlternateEmail(), "We succesfully created businnes email for you: ", Email.displayInfo(email.getEmailId()) + email.getPassword());
 
     }
 
-    public static void sendChangedPasswordEmail(String newPassword,String alternateEmail) throws ClassNotFoundException, SQLException, MessagingException {
+    public static void sendChangedPasswordEmail(String newPassword, String alternateEmail) throws ClassNotFoundException, SQLException, MessagingException {
         final String fromEmail = "codepoolexercise@gmail.com";
         final String password = "codepoolio1234";
         Properties props = new Properties();
@@ -46,11 +46,9 @@ public class EmailService {
         };
         Session session = Session.getInstance(props, auth);
 
-        sendTLSEmail(session, alternateEmail, "You succesfully changed password. Your new password is: ",newPassword );
+        sendTLSEmail(session, alternateEmail, "You succesfully changed password. Your new password is: ", newPassword);
 
     }
-
-
 
 
     private static void sendTLSEmail(Session session, String toEmail, String subject, String body)

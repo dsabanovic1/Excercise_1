@@ -1,4 +1,5 @@
 package database;
+
 import org.apache.commons.lang3.RandomStringUtils;
 
 import java.sql.*;
@@ -13,9 +14,9 @@ public class Database {
     public static Connection getConnection() throws ClassNotFoundException, SQLException {
         Class.forName("io.crate.client.jdbc.CrateDriver");
         Properties properties = new Properties();
-        properties.put("user","crate");
+        properties.put("user", "crate");
 
-        Connection con =DriverManager.getConnection("crate://127.0.0.1:5432/",properties);
+        Connection con = DriverManager.getConnection("crate://127.0.0.1:5432/", properties);
         con.setSchema("excercise");
         return con;
     }
@@ -26,8 +27,7 @@ public class Database {
         return connection.prepareStatement(SQLquery);
     }
 
-    public static String generatorId(int length)
-    {
+    public static String generatorId(int length) {
         return RandomStringUtils.randomNumeric(5);
     }
 }
